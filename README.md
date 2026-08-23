@@ -1,2 +1,2 @@
 # website
-a sports website fo stats
+a sports website for stats
