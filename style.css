@@ -1,0 +1,73 @@
+body{
+    font-family: Arial, sans-serif;
+    background:#0d1117;
+    color:white;
+}
+
+table{
+    width:700px;
+    border-collapse:collapse;
+}
+
+th{
+    background:#1f6feb;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#222;
+}
+
+tr:hover{
+    background:#333;
+}
+#SmallText{
+  margin: 0px;
+  padding: 0px;
+  font-size: 1px
+  
+}
+.league-tabs {
+    display: flex;
+    border-bottom: 1px solid #0d1117;
+}
+
+.league-tabs button {
+  flex: 1;
+  padding: 5px;
+   border: none;
+   background: #0d1117;
+  font-size: 16px;
+   font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+.league-tabs button:hover {
+    background: grey;
+}
+.league-tabs button.active {
+    border-bottom: 3px solid #ffffff;
+}
+header {
+  display: flex;
+  align-items: center; /* optional: aligns items vertically */
+  gap: 1rem; /* optional: adds space between items */
+  
+}
+.DoButtons  button{
+   border: none;
+  color: white;
+  background: #0d1117;
+  paddding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.DoButtons button:hover {
+    background: grey;
+}
