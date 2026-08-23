@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <div class="DoButtons">
+       <button onclick="DoPlayerFetch()">Player stats</button>
+       <button onclick="DoTodayGames()">Today's games</button>
+  </div>
+<div id = standings >
+<head>
+    <meta charset="utf-8">
+    <title>MLB Central</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header classs = "DoButtons">
+        <h1>⚾ MLB Central</h1>
+
+    
+    </header>
+
+    <div class="league-tabs">
+        <button id="ALButton" onclick="showAL()">American League</button>
+        <button id="NLButton" onclick="showNL()">National League</button>
+    </div>
+
+    <main>
+
+        <!-- ==================== AMERICAN LEAGUE ==================== -->
+
+        <div id="ALStandings">
+
+            <!-- AL East -->
+            <h2>AL East Standings</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>GB</th>
+                    </tr>
+                </thead>
+
+                <tbody id="StandingALEast">
+                    <!-- JavaScript inserts rows here -->
+                </tbody>
+            </table>
+
+
+            <!-- AL Central -->
+            <h2>AL Central Standings</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>GB</th>
+                    </tr>
+                </thead>
+
+                <tbody id="StandingALCentral">
+                    <!-- JavaScript inserts rows here -->
+                </tbody>
+            </table>
+
+
+            <!-- AL West -->
+            <h2>AL West Standings</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>GB</th>
+                    </tr>
+                </thead>
+
+                <tbody id="StandingALWest">
+                    <!-- JavaScript inserts rows here -->
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <!-- ==================== NATIONAL LEAGUE ==================== -->
+
+        <div id="NLStandings">
+
+            <!-- NL East -->
+            <h2>NL East Standings</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>GB</th>
+                    </tr>
+                </thead>
+
+                <tbody id="StandingNLEast">
+                    <!-- JavaScript inserts rows here -->
+                </tbody>
+            </table>
+
+
+            <!-- NL Central -->
+            <h2>NL Central Standings</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>GB</th>
+                    </tr>
+                </thead>
+
+                <tbody id="StandingNLCentral">
+                    <!-- JavaScript inserts rows here -->
+                </tbody>
+            </table>
+
+
+            <!-- NL West -->
+            <h2>NL West Standings</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>GB</th>
+                    </tr>
+                </thead>
+
+                <tbody id="StandingNLWest">
+                    <!-- JavaScript inserts rows here -->
+                </tbody>
+            </table>
+
+        </div>
+
+    </main>
+
+</body>
+</div>
+</html>
