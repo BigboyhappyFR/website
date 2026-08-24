@@ -123,3 +123,29 @@ function showNL() {
   document.getElementById("ALButton").classList.remove("active");
 }
 
+// =========================
+// MAIN BASEBALL BUTTONS
+// =========================
+
+
+function DoPlayerFetch() {
+  document.getElementById("standings").classList.add("InActive");
+  document.getElementById("players").classList.remove("InActive");
+  document.getElementById("TodayGames").classList.add("InActive");
+  
+  
+}
+function DoTodayGames() {
+  document.getElementById("standings").classList.add("InActive");
+  document.getElementById("TodayGames").classList.remove("InActive");
+  document.getElementById("players").classList.add("InActive");
+  
+  
+}
+function DoStandings() {
+  document.getElementById("TodayGames").classList.add("InActive");
+  document.getElementById("standings").classList.remove("InActive");
+  document.getElementById("players").classList.add("InActive");
+  
+  
+}
