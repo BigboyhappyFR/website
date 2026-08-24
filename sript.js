@@ -123,11 +123,6 @@ function showNL() {
   document.getElementById("ALButton").classList.remove("active");
 }
 
-// =========================
-// MAIN BASEBALL BUTTONS
-// =========================
-
-
 function DoPlayerFetch() {
   document.getElementById("standings").classList.add("InActive");
   document.getElementById("players").classList.remove("InActive");
