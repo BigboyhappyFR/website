@@ -71,3 +71,6 @@ header {
 .DoButtons button:hover {
     background: grey;
 }
+.InActive {
+  display: none
+}
