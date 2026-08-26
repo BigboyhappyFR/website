@@ -95,6 +95,42 @@ function RunStandings() {
     });
 }
 
+function RunTodayGames() {
+  const today = new Date().toISOString().split("T")[0];
+
+  fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${today}`)
+    .then(response => response.json())
+    .then(data => {
+
+      const gamesTable = document.getElementById("GamesTable");
+
+      gamesTable.innerHTML = "";
+
+      data.dates.forEach(date => {
+
+        date.games.forEach(game => {
+
+          gamesTable.innerHTML += `
+            <tr>
+              <td>${game.teams.away.team.name}</td>
+              <td>${game.teams.home.team.name}</td>
+              <td>
+                ${new Date(game.gameDate).toLocaleTimeString([], {
+                  hour: "numeric",
+                  minute: "2-digit"
+                })}
+              </td>
+              <td>${game.status.detailedState}</td>
+            </tr>
+          `;
+
+        });
+
+      });
+
+    });
+}
+
 
 RunStandings();
 
@@ -134,7 +170,7 @@ function DoTodayGames() {
   document.getElementById("standings").classList.add("InActive");
   document.getElementById("TodayGames").classList.remove("InActive");
   document.getElementById("players").classList.add("InActive");
-  
+  RunTodayGames();
   
 }
 function DoStandings() {
