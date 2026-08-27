@@ -110,17 +110,57 @@ function RunTodayGames() {
 
         date.games.forEach(game => {
 
+          // Get the game status
+          const status = game.status.detailedState;
+
+          // Get the scores
+          const awayScore = game.teams.away.score ?? "-";
+          const homeScore = game.teams.home.score ?? "-";
+
+          // Decide what to display
+          let displayStatus;
+
+          if (status === "Scheduled") {
+            displayStatus = "Scheduled";
+          } 
+          else if (
+            status === "In Progress" ||
+            status === "Warmup" ||
+            status === "Pre-Game"
+          ) {
+            displayStatus = "In Progress";
+          } 
+          else if (
+            status === "Final" ||
+            status === "Game Over" ||
+            status === "Completed Early"
+          ) {
+            displayStatus = "Final";
+          } 
+          else {
+            displayStatus = status;
+          }
+
           gamesTable.innerHTML += `
             <tr>
               <td>${game.teams.away.team.name}</td>
+
               <td>${game.teams.home.team.name}</td>
+
               <td>
                 ${new Date(game.gameDate).toLocaleTimeString([], {
                   hour: "numeric",
                   minute: "2-digit"
                 })}
               </td>
-              <td>${game.status.detailedState}</td>
+
+              <td>
+                ${awayScore} - ${homeScore}
+              </td>
+
+              <td>
+                ${displayStatus}
+              </td>
             </tr>
           `;
 
@@ -135,7 +175,7 @@ function RunTodayGames() {
 RunStandings();
 
 // Update every 60 seconds
-setInterval(RunStandings, 1000);
+setInterval(RunStandings, 60000);
 
 
 // =========================
@@ -180,3 +220,4 @@ function DoStandings() {
   
   
 }
+setInterval(RunTodayGames, 15000);
