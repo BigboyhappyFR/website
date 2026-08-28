@@ -171,15 +171,37 @@ function RunTodayGames() {
     });
 }
 
+function RunPlayerStanding() {
+  fetch(`https://statsapi.mlb.com/api/v1/stats/leaders?leaderCategories=battingAverage&statGroup=hitting&season=${new Date().getFullYear()}&limit=65`)
+    .then(response => response.json())
+    .then(data => {
 
-RunStandings();
+      const table = document.getElementById("PlayerStandings");
 
-// Update every 60 seconds
-setInterval(RunStandings, 60000);
+      table.innerHTML = "";
+
+      data.leagueLeaders[0].leaders.forEach(player => {
+
+        table.innerHTML += `
+          <tr>
+            <td>${player.rank}</td>
+            <td>${player.person.fullName}</td>
+            <td>${player.value}</td>
+          </tr>
+        `;
+
+      });
+
+    });
+}
+
+
+
+
 
 
 // =========================
-// LEAGUE BUTTONS
+//  BUTTONS
 // =========================
 
 function showAL() {
@@ -203,7 +225,7 @@ function DoPlayerFetch() {
   document.getElementById("standings").classList.add("InActive");
   document.getElementById("players").classList.remove("InActive");
   document.getElementById("TodayGames").classList.add("InActive");
-  
+  RunPlayerStanding()
   
 }
 function DoTodayGames() {
@@ -217,7 +239,10 @@ function DoStandings() {
   document.getElementById("TodayGames").classList.add("InActive");
   document.getElementById("standings").classList.remove("InActive");
   document.getElementById("players").classList.add("InActive");
-  
+  RunStandings()
   
 }
 setInterval(RunTodayGames, 15000);
+setInterval(RunStandings, 60000);
+RunStandings()
+RunTodayGames();
