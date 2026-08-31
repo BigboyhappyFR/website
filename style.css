@@ -72,5 +72,92 @@ header {
     background: grey;
 }
 .InActive {
-  display: none
+  display: none;
+}
+
+#WorldSeriesStandings {
+  padding: 20px;
+  text-align: center;
+}
+
+.bracket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 20px 0;
+}
+
+.bracket-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.bracket-vs {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f6feb;
+  margin: 0 20px;
+}
+
+#PostseasonBracket {
+  padding: 20px;
+  text-align: center;
+}
+
+.bracket-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.bracket-round {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bracket-round-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1f6feb;
+  margin-bottom: 10px;
+}
+
+.bracket-matchups {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.bracket-matchup {
+  border: 2px solid #1f6feb;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px;
+  background: #161b22;
+}
+
+.bracket-team-name {
+  padding: 8px;
+  font-weight: bold;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.bracket-team-name:last-child {
+  border-bottom: none;
+}
+
+.bracket-team-wins {
+  float: right;
+  color: #1f6feb;
 }
