@@ -171,27 +171,105 @@ function RunTodayGames() {
     });
 }
 
-function RunPlayerStanding() {
-  fetch(`https://statsapi.mlb.com/api/v1/stats/leaders?leaderCategories=battingAverage&statGroup=hitting&season=${new Date().getFullYear()}&limit=65`)
+function RunWorldSeries() {
+  const bracket = document.getElementById("WorldSeriesBracket");
+  if (!bracket) return;
+
+  fetch("https://statsapi.mlb.com/api/v1/series?leagueId=103,104&season=2026")
     .then(response => response.json())
     .then(data => {
-
-      const table = document.getElementById("PlayerStandings");
-
-      table.innerHTML = "";
-
-      data.leagueLeaders[0].leaders.forEach(player => {
-
-        table.innerHTML += `
-          <tr>
-            <td>${player.rank}</td>
-            <td>${player.person.fullName}</td>
-            <td>${player.value}</td>
-          </tr>
+      if (data.series && data.series.length > 0) {
+        const series = data.series[0];
+        bracket.innerHTML = `
+          <div class="bracket-team">
+            <div>${series.teams.away.team.name}</div>
+            <div>${series.teams.away.wins}</div>
+          </div>
+          <div class="bracket-vs">VS</div>
+          <div class="bracket-team">
+            <div>${series.teams.home.team.name}</div>
+            <div>${series.teams.home.wins}</div>
+          </div>
         `;
+      } else {
+        bracket.innerHTML = "";
+      }
+    })
+    .catch(error => {
+      console.log("World Series fetch error:", error);
+      bracket.innerHTML = "";
+    });
+}
 
+function RunPostseasonBracket() {
+  const container = document.getElementById("BracketContainer");
+  if (!container) return;
+  
+  fetch("https://statsapi.mlb.com/api/v1/tournaments")
+    .then(response => response.json())
+    .then(data => {
+      if (!data.tournaments || data.tournaments.length === 0) {
+        container.innerHTML = "";
+        return;
+      }
+
+      let html = "";
+      
+      // Process each tournament
+      data.tournaments.forEach(tournament => {
+        if (tournament.name.includes("Playoffs") || tournament.name.includes("World Series")) {
+          html += `<div class="bracket-round">
+            <div class="bracket-round-title">${tournament.name}</div>
+            <div class="bracket-matchups">`;
+          
+          if (tournament.rounds) {
+            tournament.rounds.forEach(round => {
+              html += `<h4 style="color: #1f6feb; margin: 10px 0;">${round.name}</h4>`;
+              
+              if (round.series) {
+                round.series.forEach(series => {
+                  html += `<div class="bracket-matchup">
+                    <div class="bracket-team-name">${series.teams.away.team.name} <span class="bracket-team-wins">${series.teams.away.wins}</span></div>
+                    <div class="bracket-team-name">${series.teams.home.team.name} <span class="bracket-team-wins">${series.teams.home.wins}</span></div>
+                  </div>`;
+                });
+              }
+            });
+          }
+          
+          html += `</div></div>`;
+        }
       });
 
+      container.innerHTML = html;
+    })
+    .catch(error => {
+      console.log("Error fetching postseason data:", error);
+      container.innerHTML = "";
+    });
+}
+
+function RunPlayerStanding() {
+  fetch(`https://statsapi.mlb.com/api/v1/stats?stats=season&group=hitting&season=${new Date().getFullYear()}&sportId=1&sortStat=onBasePlusSlugging&limit=50`)
+    .then(response => response.json())
+    .then(data => {
+      const table = document.getElementById("PlayerStandings");
+      table.innerHTML = "";
+
+      data.stats[0].splits.forEach((player, index) => {
+        table.innerHTML += `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${player.player.fullName}</td>
+            <td>${player.team.name}</td>
+            <td>${player.stat.avg}</td>
+            <td>${player.stat.ops}</td>
+            <td>${player.stat.hits}</td>
+            <td>${player.stat.homeRuns}</td>
+            <td>${player.stat.rbi}</td>
+          </tr>
+        `;
+      });
     });
 }
 
@@ -244,5 +322,14 @@ function DoStandings() {
 }
 setInterval(RunTodayGames, 15000);
 setInterval(RunStandings, 60000);
-RunStandings()
-RunTodayGames();
+setInterval(RunWorldSeries, 30000);
+setInterval(RunPostseasonBracket, 30000);
+
+// Wait for DOM to load before running
+document.addEventListener("DOMContentLoaded", function() {
+  showAL();
+  RunStandings();
+  RunTodayGames();
+  RunWorldSeries();
+  RunPostseasonBracket();
+});
