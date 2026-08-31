@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <title>MLB Central</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
     </header>
 
     <div class="league-tabs">
-        <button id="ALButton" onclick="showAL()">American League</button>
+        <button id="ALButton" class = "active"onclick="showAL()">American League</button>
         <button id="NLButton" onclick="showNL()">National League</button>
     </div>
 
@@ -92,7 +93,7 @@
 
         <!-- ==================== NATIONAL LEAGUE ==================== -->
 
-        <div id="NLStandings">
+        <div id="NLStandings" class="InActive">
 
             <!-- NL East -->
             <h2>NL East Standings</h2>
@@ -156,6 +157,25 @@
 
 </body>
 </div>
+
+<!-- ==================== WORLD SERIES ==================== -->
+
+<div id="WorldSeriesStandings" class="InActive" >
+    <h2>World Series</h2>
+
+    <div id="WorldSeriesBracket" >
+        <!-- JavaScript inserts World Series matchup here -->
+    </div>
+</div>
+
+<!-- ==================== POSTSEASON BRACKET ==================== -->
+
+<div id="PostseasonBracket" class="InActive">
+    <h2>MLB Postseason Bracket</h2>
+    <div id="BracketContainer" class="bracket-container">
+        <!-- JavaScript inserts bracket here -->
+    </div>
+</div>
   <!-- diffrent page -->
   <div id = "players" class = InActive>
      <h2>MLB Batting Leaders</h2>
@@ -163,9 +183,14 @@
     <table>
         <thead>
             <tr>
-                <th>Rank</th>
-                <th>Player</th>
-                <th>AVG</th>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>Team</th>
+              <th>AVG</th>
+              <th>OPS</th>
+              <th>H</th>
+              <th>HR</th>
+              <th>RBI</th>
             </tr>
         </thead>
 
@@ -198,4 +223,9 @@
 
 
       <h1>john placeholder says the part of this website is a work-in-progress</h1></div>
+
+
+
+
 </html>
+
